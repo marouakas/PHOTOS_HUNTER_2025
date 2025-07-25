@@ -2,7 +2,12 @@
 // CONNEXION
 
 try {
-    $connexion = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD );
+    $connexion = new PDO(
+        "mysql:host=localhost;port=3306;dbname=photo_hunter;charset=utf8",
+        "root",
+        "root" // ← mot de passe probablement "root" sur MAMP
+    );
+    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo $e;
+    die("Erreur de connexion à la base de données : " . $e->getMessage());
 }
